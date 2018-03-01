@@ -12,6 +12,7 @@
 			/*Since label elements have a default of display: inline we can't manipulate horizontal length of the div. Therefore, we need to change it to inline-block in order for width to have an effect.*/
 			display: inline-block;
 			width: 100px;
+			/*Aligning text up against input*/
 			text-align: right;
 			margin-right: 10px;
 		}
@@ -61,12 +62,13 @@
 		var password = false;
 		var username = false;
 		$('input').keyup(function (event){
-			if (event.target.value !=(null||undefined||'')) {
-				event.target.name==="username"?username=true:null;
-				event.target.name==="password"?password=true:null;
+			var tar = event.target;
+			if (tar.value !=(null||undefined||'')) {
+				tar.name==="username"?username=true:null;
+				tar.name==="password"?password=true:null;
 			} else {
-				event.target.name==="username"?username=false:null;
-				event.target.name==="password"?password=false:null;
+				tar.name==="username"?username=false:null;
+				tar.name==="password"?password=false:null;
 			}
 			if(password&&username) {
 				$('button').removeAttr("disabled");

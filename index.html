@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+			background-color: #000;
+			color: #fff;
+			margin: 2vw;
+		}
+		label {
+			/*Since label elements have a default of display: inline we can't manipulate horizontal length of the div. Therefore, we need to change it to inline-block in order for width to have an effect.*/
+			display: inline-block;
+			width: 100px;
+			text-align: right;
+			margin-right: 10px;
+		}
+		div {
+			margin: 10px 0px;
+		}
+		/*Targeting a disabled button*/
+		button:disabled {
+			color: lightgrey;
+		}
+		form, .form-text {
+			padding: 5px;
+			margin: 10px auto;
+			width: 500px;
+			text-align: center;
+			border: 10px solid grey;
+			/*box-sizing: content-box;*/ /*default - width and height properties does not include the border nor the padding*/
+			box-sizing: border-box; /*width and height properties includes content, padding and border */
+		}
+
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<form>
+		<!-- Wrapping each label/input in a div to keep each pair on one line. Since the div element is a 'block-level element', is has a default of display: block. -->
+		<div>
+			<label>Username:</label>
+			<!-- Input is a self closing element. No need to add / to close element in HTML5. -->
+			<input type="text" name="username" placeholder="Username">
+		</div>
+		<div>
+			<label>Password:</label>
+			<input type="password" name="password" placeholder="Password">
+		</div>
+		<button type="submit" disabled>Submit</button>
+	</form>
+	<div class="form-text">
+		<!-- p elements are also block-level elements -->
+		<p>Please enter your username and password to begin</p>
+		<p>Press Submit to continue</p>
+	</div>
+</body>
+<script>
+	// Since the DOM may not be rendered before jQuery is executed, we must wait for the DOM to be ready before executing our jQuery. This is why we wrap our jQuery in a self-executing function that will trigger once the DOM is ready. 
+	$(document).ready(function(){
+		var password = false;
+		var username = false;
+		$('input').keyup(function (event){
+			if (event.target.value !=(null||undefined||'')) {
+				event.target.name==="username"?username=true:null;
+				event.target.name==="password"?password=true:null;
+			} else {
+				event.target.name==="username"?username=false:null;
+				event.target.name==="password"?password=false:null;
+			}
+			if(password&&username) {
+				$('button').removeAttr("disabled");
+			} else {
+				if (!($('button').prop( "disabled" ))) {
+					$('button').prop("disabled", true);
+				}
+			}
+		}) 
+    });
+</script>
+</html>

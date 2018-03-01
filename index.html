@@ -62,6 +62,7 @@
 		var password = false;
 		var username = false;
 		$('input').keyup(function (event){
+			// Finding the event.target which gets the element on which the event originally occurred.
 			var tar = event.target;
 			if (tar.value !=(null||undefined||'')) {
 				tar.name==="username"?username=true:null;

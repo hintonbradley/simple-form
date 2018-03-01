@@ -57,7 +57,7 @@
 	</div>
 </body>
 <script>
-	// Since the DOM may not be rendered before jQuery is executed, we must wait for the DOM to be ready before executing our jQuery. This is why we wrap our jQuery in a self-executing function that will trigger once the DOM is ready. 
+	// We must wait for the DOM to be ready before executing our jQuery because jQuery can only assign listening events to elements once the DOM is rendered. This is why we wrap our jQuery in a self-executing function that will trigger once the DOM is ready. 
 	$(document).ready(function(){
 		var password = false;
 		var username = false;
